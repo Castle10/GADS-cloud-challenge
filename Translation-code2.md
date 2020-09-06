@@ -37,4 +37,9 @@
 (copy IP address to clipboard)
 - To create user for the sql instance
 = gcloud sql users create blogdbuser --instance=blog-db --password=password
+- To create network under connections
+= gcloud sql network create web-front-end --authorized-network=(network address)/32
+
+## Task 5: Configure an application in a Compute Engine instance to use Cloud SQL
+SSH bloghost
 
