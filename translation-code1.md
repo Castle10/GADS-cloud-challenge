@@ -4,7 +4,7 @@
 
 ## Task 2: Create a virtual machine 
 - To set project ID 
-= gcloud set project (project Id)
+= gcloud config set project (project Id)
 - To set region
 = gcloud compute zones list | grep us-central1
 - To set Zone
