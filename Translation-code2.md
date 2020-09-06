@@ -41,5 +41,54 @@
 = gcloud sql network create web-front-end --authorized-network=(network address)/32
 
 ## Task 5: Configure an application in a Compute Engine instance to use Cloud SQL
-SSH bloghost
+- To SSH into SQL bloghost
+= SSH bloghost
+- To change work directory 
+= cd /var/www/html
+- To edit work file 
+= sudo nano index.php
+- Instruction: copy and paste the below lines of code in work fille
+=<html>
+<head><title>Welcome to my excellent blog</title></head>
+<body>
+<h1>Welcome to my excellent blog</h1>
+<?php
+ $dbserver = "CLOUDSQLIP";
+$dbuser = "blogdbuser";
+$dbpassword = "DBPASSWORD";
+// In a production blog, we would not store the MySQL
+// password in the document root. Instead, we would store it in a
+// configuration file elsewhere on the web server VM instance.
+
+$conn = new mysqli($dbserver, $dbuser, $dbpassword);
+
+if (mysqli_connect_error()) {
+        echo ("Database connection failed: " . mysqli_connect_error());
+} else {
+        echo ("Database connection succeeded.");
+}
+?>
+</body></html>
+- Click Ctrl+O then press enter
+- Click Ctrl+x to exit nano editor
+- To restart web server
+= sudo service apache2 restart
+
+## Task 6: Configure an application in a Compute Engine instance to use a Cloud Storage object
+- Copy public URL link for object
+- SSH bloghost
+- To change directory
+= cd /var/www/html
+- To edit work file
+= sudo nano index.php
+- Edit h1 element
+- Paste this HTML markup immediately before the URL: <img src='
+- Place a closing single quotation mark and a closing angle bracket at the end of the URL: '>
+- Result should look thus : <img src='https://storage.googleapis.com/qwiklabs-gcp-0005e186fa559a09/my-excellent-blog.png'>
+- Press Ctrl+O and press enter
+- Press Ctrl+X to exit the editor
+- To restart web server
+= sudo service apache2 restart
+
+
 
